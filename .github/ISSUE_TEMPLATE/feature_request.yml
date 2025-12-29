@@ -1,0 +1,111 @@
+name: ✨ Feature Request
+description: Suggest a new notebook, method, or improvement
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement! Please describe what you'd like to see added.
+        
+        **Note:** For early-stage ideas or brainstorming, consider [starting a Discussion](https://github.com/bcdelodx/KASS/discussions/new?category=feature-requests-ideas) first to get community feedback.
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Feature Type
+      description: What kind of addition are you suggesting?
+      options:
+        - New methodological notebook
+        - New applied policy notebook
+        - New data connector
+        - Enhancement to existing notebook
+        - New visualization/diagnostic tool
+        - Other (describe below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Feature Description
+      description: What would you like to see added?
+      placeholder: "Add a notebook implementing matching methods (propensity score matching, coarsened exact matching, entropy balancing)..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation / Use Case
+      description: Why is this valuable? What problem does it solve?
+      placeholder: |
+        Matching methods are widely used in observational studies but not currently covered in KASS.
+        
+        Use cases:
+        - Evaluating programs with self-selection
+        - Creating balanced comparison groups
+        - Pre-processing before DID or regression analysis
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Are there existing notebooks that could be adapted? Why aren't they sufficient?
+      placeholder: "The HTE notebook uses some matching concepts, but doesn't cover the full methodology..."
+
+  - type: dropdown
+    id: policy-domain
+    attributes:
+      label: Primary Policy Domain
+      description: Which policy area would this primarily serve?
+      options:
+        - Workforce & Labor Markets
+        - Education
+        - Healthcare
+        - Housing & Community Development
+        - Environment & Climate
+        - Criminal Justice
+        - Economic Development
+        - Multiple domains
+        - Not domain-specific
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Technical References
+      description: Academic papers, existing implementations, or methodological resources
+      placeholder: |
+        Key papers:
+        - Rosenbaum & Rubin (1983) on propensity score matching
+        - Iacus et al. (2012) on coarsened exact matching
+        
+        Existing implementations:
+        - R MatchIt package
+        - Python causalml library
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: How can you help make this happen?
+      options:
+        - label: I can write the notebook myself
+        - label: I can provide domain expertise / review methodology
+        - label: I can help test the implementation
+        - label: I can contribute example data / use cases
+        - label: I'm just suggesting the idea
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues and discussions to avoid duplicates
+          required: true
+        - label: I have reviewed the project roadmap to see if this is already planned
+          required: true

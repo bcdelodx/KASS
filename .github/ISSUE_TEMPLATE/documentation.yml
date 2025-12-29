@@ -1,0 +1,92 @@
+name: 📖 Documentation Improvement
+description: Report documentation issues or suggest improvements
+title: "[Docs]: "
+labels: ["documentation", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Help us improve KASS documentation! This template is for:
+        - Typos or grammatical errors
+        - Broken links
+        - Unclear or confusing explanations
+        - Missing documentation
+        
+        **Note:** For methodological questions about content, please [start a Discussion](https://github.com/bcdelodx/KASS/discussions/new?category=methodological-questions) instead.
+
+  - type: dropdown
+    id: location
+    attributes:
+      label: Documentation Location
+      description: Where is the documentation issue?
+      options:
+        - README.md
+        - Notebook markdown cells
+        - CONTRIBUTING.md
+        - Code comments/docstrings
+        - GitHub Discussions pinned posts
+        - Other (specify below)
+    validations:
+      required: true
+
+  - type: input
+    id: file
+    attributes:
+      label: Specific File/Notebook
+      description: If applicable, which file contains the issue?
+      placeholder: "e.g., 14-synthetic-control-policy-lab.ipynb"
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: Issue Description
+      description: What's wrong or unclear?
+      placeholder: |
+        In the "Identification Strategy" section of the synthetic control notebook,
+        the explanation of parallel pre-trends assumption is unclear...
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current Documentation
+      description: Quote the existing text (if applicable)
+      placeholder: |
+        Current text:
+        "We assume parallel trends in the pre-treatment period."
+      render: markdown
+
+  - type: textarea
+    id: suggested
+    attributes:
+      label: Suggested Improvement
+      description: How should it be changed or clarified?
+      placeholder: |
+        Suggested revision:
+        "The synthetic control method requires that the weighted combination of control units 
+        closely tracks the treated unit's outcome trajectory during the pre-treatment period..."
+      render: markdown
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How serious is this documentation issue?
+      options:
+        - Critical (blocks understanding or causes errors)
+        - Major (significantly impacts comprehension)
+        - Minor (small improvement, not blocking)
+        - Typo/formatting (cosmetic)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I have verified this issue exists in the latest version
+          required: true
+        - label: I have searched existing issues to avoid duplicates
+          required: true
