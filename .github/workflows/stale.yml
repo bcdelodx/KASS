@@ -1,0 +1,85 @@
+name: Mark stale issues and pull requests
+
+on:
+  schedule:
+    # Run every day at midnight UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          # Issue settings
+          stale-issue-message: |
+            This issue has been automatically marked as stale because it has not had recent activity. 
+            
+            It will be closed in 14 days if no further activity occurs. If this issue is still relevant:
+            - Comment with an update or additional information
+            - Remove the `stale` label if you're still working on it
+            
+            Thank you for contributing to KASS!
+          
+          close-issue-message: |
+            This issue was closed automatically due to inactivity. 
+            
+            If you believe this issue is still relevant, please feel free to:
+            - Open a new issue with updated information
+            - Reference this issue number for context
+            
+            Thank you for your understanding!
+          
+          stale-issue-label: 'stale'
+          days-before-issue-stale: 30
+          days-before-issue-close: 14
+          
+          # Exempt certain labels from being marked stale
+          exempt-issue-labels: |
+            priority-urgent
+            priority-high
+            in-progress
+            blocked
+            good-first-issue
+            help-wanted
+            enhancement
+          
+          # Pull request settings
+          stale-pr-message: |
+            This pull request has been automatically marked as stale because it has not had recent activity.
+            
+            It will be closed in 14 days if no further activity occurs. If this PR is still needed:
+            - Push new commits or rebase to show activity
+            - Comment with an update on the status
+            - Remove the `stale` label
+          
+          close-pr-message: |
+            This pull request was closed automatically due to inactivity.
+            
+            If the changes are still needed, please open a new pull request.
+          
+          stale-pr-label: 'stale'
+          days-before-pr-stale: 45
+          days-before-pr-close: 14
+          
+          exempt-pr-labels: |
+            priority-urgent
+            priority-high
+            in-progress
+            blocked
+          
+          # General settings
+          operations-per-run: 100
+          ascending: true
+          remove-stale-when-updated: true
+          
+          # Only process issues/PRs that have these labels (leave empty for all)
+          # only-labels: ''
+          
+          # Ignore issues/PRs with milestones
+          exempt-all-milestones: true

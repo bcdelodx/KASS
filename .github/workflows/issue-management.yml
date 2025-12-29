@@ -1,0 +1,131 @@
+name: Issue Management Automation
+
+on:
+  issues:
+    types: [opened, labeled, unlabeled]
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+
+jobs:
+  # Add welcome comment for first-time contributors
+  welcome-new-contributor:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues' && github.event.action == 'opened'
+    steps:
+      - uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: |
+            👋 Thanks for opening your first issue in KASS!
+            
+            **What happens next:**
+            1. A maintainer will triage this issue and add appropriate labels
+            2. We aim to respond within 24-48 hours for most issues
+            3. Bug reports with complete reproduction steps get priority
+            
+            **While you wait:**
+            - Check our [Discussions](https://github.com/bcdelodx/KASS/discussions) for related conversations
+            - Review the [CONTRIBUTING.md](https://github.com/bcdelodx/KASS/blob/main/CONTRIBUTING.md) for contribution guidelines
+            
+            Thank you for helping improve KASS! 🎉
+
+  # Remove needs-triage when other labels are added
+  auto-remove-triage:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues' && github.event.action == 'labeled'
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const labelAdded = context.payload.label.name;
+            
+            // Labels that indicate triage is complete
+            const triageCompletionLabels = [
+              'in-progress',
+              'priority-urgent',
+              'priority-high', 
+              'priority-medium',
+              'priority-low',
+              'wont-fix',
+              'duplicate',
+              'good-first-issue'
+            ];
+            
+            // Check if a triage-completion label was just added
+            if (triageCompletionLabels.includes(labelAdded)) {
+              // Check if needs-triage label exists on this issue
+              const hasTriageLabel = issue.labels.some(l => l.name === 'needs-triage');
+              
+              if (hasTriageLabel) {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  name: 'needs-triage'
+                });
+                console.log(`Removed needs-triage label from issue #${issue.number}`);
+              }
+            }
+
+  # Auto-label based on keywords in title/body
+  auto-label-keywords:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues' && github.event.action == 'opened'
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const title = issue.title.toLowerCase();
+            const body = (issue.body || '').toLowerCase();
+            const combined = title + ' ' + body;
+            
+            const labelsToAdd = [];
+            
+            // Method detection
+            const methodKeywords = {
+              'method-did': ['difference-in-difference', 'diff-in-diff', 'did ', 'parallel trends'],
+              'method-synth-control': ['synthetic control', 'synth control', 'donor pool'],
+              'method-rdd': ['regression discontinuity', 'rdd', 'running variable', 'cutoff'],
+              'method-hte': ['heterogeneous treatment', 'hte', 'cate', 'treatment effect heterogeneity'],
+              'method-iv': ['instrumental variable', ' iv ', 'instrument validity'],
+              'method-matching': ['propensity score', 'matching', 'cem', 'exact matching']
+            };
+            
+            for (const [label, keywords] of Object.entries(methodKeywords)) {
+              if (keywords.some(kw => combined.includes(kw))) {
+                labelsToAdd.push(label);
+              }
+            }
+            
+            // Domain detection
+            const domainKeywords = {
+              'domain-workforce': ['workforce', 'labor', 'employment', 'job', 'wage'],
+              'domain-education': ['education', 'school', 'student', 'learning', 'college'],
+              'domain-health': ['health', 'medical', 'hospital', 'patient', 'healthcare'],
+              'domain-housing': ['housing', 'rent', 'home', 'opportunity zone'],
+              'domain-environment': ['environment', 'climate', 'carbon', 'pollution'],
+              'domain-justice': ['criminal', 'justice', 'prison', 'recidivism', 'police'],
+              'domain-economic': ['economic development', 'gdp', 'growth', 'investment']
+            };
+            
+            for (const [label, keywords] of Object.entries(domainKeywords)) {
+              if (keywords.some(kw => combined.includes(kw))) {
+                labelsToAdd.push(label);
+              }
+            }
+            
+            // Add detected labels
+            if (labelsToAdd.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: labelsToAdd
+              });
+              console.log(`Added labels to issue #${issue.number}: ${labelsToAdd.join(', ')}`);
+            }
