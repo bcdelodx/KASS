@@ -3,8 +3,11 @@
 **Open-source notebooks demonstrating production-grade causal inference and policy analysis**
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Discussions](https://img.shields.io/badge/GitHub-Discussions-181717?logo=github)](../../discussions)
 [![Issues](https://img.shields.io/badge/Issues-Welcome-brightgreen)](../../issues)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 ---
 
@@ -188,12 +191,12 @@ See individual notebooks for specific environment requirements.
 If you use these notebooks in your research or operational work:
 
 ```bibtex
-@software{kss2025,
+@software{kass2025,
   author = {Brandon Deloatch},
-  title = {KSS: Khipu Knowledge \& Analytics for Social Science},
+  title = {KASS: Knowledge \& Analytics for Social Science},
   year = {2025},
   publisher = {GitHub},
-  url = {https://github.com/bcdelodx/KSS}
+  url = {https://github.com/bcdelodx/KASS}
 }
 ```
 
