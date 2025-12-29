@@ -1,0 +1,132 @@
+name: 🔌 Data Connector Issue
+description: Report problems connecting to or accessing data sources
+title: "[Data]: "
+labels: ["data-connector", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Report issues with data sources used in KASS notebooks.
+        
+        **Note:** If your issue is about understanding the data or methodology, please [start a Discussion](https://github.com/bcdelodx/KASS/discussions/new?category=implementation-help) instead.
+
+  - type: dropdown
+    id: source
+    attributes:
+      label: Data Source
+      description: Which data source is causing problems?
+      options:
+        - Census API (ACS, Decennial)
+        - Bureau of Labor Statistics (BLS)
+        - CMS Medicare/Medicaid
+        - Treasury Opportunity Zones
+        - State administrative data
+        - Other federal data source
+        - Other (specify below)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: notebook
+    attributes:
+      label: Affected Notebook
+      description: Which notebook uses this data source?
+      options:
+        - 11-heterogeneous-treatment-effects.ipynb
+        - 14-synthetic-control-policy-lab.ipynb
+        - 15-regression-discontinuity-toolkit.ipynb
+        - 07-labor-market-intelligence.ipynb
+        - 20-opportunity-zone-evaluation.ipynb
+        - 22-workforce-development-roi.ipynb
+        - Multiple notebooks
+        - Not notebook-specific
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue Type
+      description: What kind of problem are you experiencing?
+      options:
+        - Connection/authentication failure
+        - API timeout or rate limiting
+        - Data not available/404 error
+        - Data format changed
+        - Missing required API key
+        - Incorrect data returned
+        - Other (describe below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Issue Description
+      description: Detailed description of the problem
+      placeholder: "When attempting to fetch Census ACS data, the API returns a 403 error..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: error
+    attributes:
+      label: Error Message
+      description: Complete error message or API response
+      placeholder: |
+        ```
+        HTTPError: 403 Client Error: Forbidden for url: 
+        https://api.census.gov/data/2021/acs/acs5?get=B01001_001E&for=state:*
+        
+        Response: {"error": "Invalid API key provided"}
+        ```
+      render: shell
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: How can we see this issue?
+      placeholder: |
+        1. Set CENSUS_API_KEY environment variable
+        2. Run cell 3 in labor market notebook
+        3. See 403 error
+    validations:
+      required: true
+
+  - type: textarea
+    id: api-key
+    attributes:
+      label: API Key Status
+      description: Do you have a valid API key? Where did you get it?
+      placeholder: |
+        - [ ] I have registered for an API key at [source]
+        - [ ] I have set the environment variable correctly
+        - [ ] The key worked previously but stopped working
+        - [ ] This is my first time using this data source
+
+  - type: input
+    id: date
+    attributes:
+      label: When did this start?
+      description: Approximate date when the issue began
+      placeholder: "e.g., December 15, 2025"
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Attempted Solutions
+      description: What have you tried to fix this?
+      placeholder: "I regenerated my API key, tried different endpoints, checked API documentation..."
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I have verified my internet connection is working
+          required: true
+        - label: I have checked that the data source/API is not undergoing maintenance
+          required: true
+        - label: I have searched existing issues to see if this is a known problem
+          required: true

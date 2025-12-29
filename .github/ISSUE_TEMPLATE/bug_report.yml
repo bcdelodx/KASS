@@ -1,0 +1,107 @@
+name: 🐛 Bug Report
+description: Report a problem with KASS notebooks or code
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. Please fill out the sections below to help us diagnose and fix the issue.
+        
+        **Note:** If you're having trouble understanding how to use a method, please [start a Discussion](https://github.com/bcdelodx/KASS/discussions/new?category=implementation-help) instead.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear description of what's wrong
+      placeholder: "When I run cell 5 in the synthetic control notebook, I get a KeyError..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: notebook
+    attributes:
+      label: Which notebook?
+      description: Select the notebook where the bug occurs
+      options:
+        - 11-heterogeneous-treatment-effects.ipynb
+        - 14-synthetic-control-policy-lab.ipynb
+        - 15-regression-discontinuity-toolkit.ipynb
+        - 07-labor-market-intelligence.ipynb
+        - 20-opportunity-zone-evaluation.ipynb
+        - 22-workforce-development-roi.ipynb
+        - Other (specify in description)
+        - Multiple notebooks affected
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Tell us how to see the bug ourselves
+      placeholder: |
+        1. Download notebook from repository
+        2. Install requirements with `pip install -r requirements.txt`
+        3. Run cells 1-4 successfully
+        4. Run cell 5
+        5. See error...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should happen instead?
+      placeholder: "Cell 5 should generate a synthetic control plot showing..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happens? Include full error messages/tracebacks
+      placeholder: |
+        ```
+        KeyError: 'treatment_unit'
+        Traceback (most recent call last):
+          ...
+        ```
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Your setup details
+      value: |
+        - **Python version:** [e.g., 3.9.7]
+        - **Operating System:** [e.g., macOS 12.3, Ubuntu 22.04, Windows 11]
+        - **Jupyter environment:** [e.g., JupyterLab 3.4, Google Colab, VS Code]
+        - **Package versions:** [run `pip list | grep -E "(pandas|numpy|scipy)"` and paste]
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Any other information that might help (screenshots, data structure, etc.)
+      placeholder: "I'm using my own data instead of the example data..."
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues to make sure this isn't a duplicate
+          required: true
+        - label: I am using the latest version of the notebook from the repository
+          required: true
+        - label: I have included a complete error message/traceback
+          required: true

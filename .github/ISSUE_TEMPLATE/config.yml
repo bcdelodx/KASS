@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Ask a Question
+    url: https://github.com/bcdelodx/KASS/discussions/new?category=methodological-questions
+    about: For methodological questions or implementation help, start a Discussion instead
+  - name: 🎯 Show Your Work
+    url: https://github.com/bcdelodx/KASS/discussions/new?category=show-tell
+    about: Share analyses you've built using KASS methods
+  - name: 💡 Discuss an Idea
+    url: https://github.com/bcdelodx/KASS/discussions/new?category=feature-requests-ideas
+    about: For early-stage ideas, start a Discussion to get feedback first
+  - name: 🔬 KRL Platform Support
+    url: https://krlabs.dev/support
+    about: For questions about the KRL platform, contact platform support

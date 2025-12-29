@@ -1,0 +1,118 @@
+name: 🔧 Notebook Improvement
+description: Suggest improvements to existing KASS notebooks
+title: "[Improvement]: "
+labels: ["enhancement", "notebook-improvement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Suggest how to make an existing notebook better!
+        
+        **Note:** For new notebooks (not improvements to existing ones), use the Feature Request template instead.
+
+  - type: dropdown
+    id: notebook
+    attributes:
+      label: Which notebook?
+      description: Select the notebook to improve
+      options:
+        - 11-heterogeneous-treatment-effects.ipynb
+        - 14-synthetic-control-policy-lab.ipynb
+        - 15-regression-discontinuity-toolkit.ipynb
+        - 07-labor-market-intelligence.ipynb
+        - 20-opportunity-zone-evaluation.ipynb
+        - 22-workforce-development-roi.ipynb
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Improvement Category
+      description: What aspect needs improvement?
+      options:
+        - Code efficiency/performance
+        - Additional robustness checks
+        - Better visualization
+        - More detailed explanation
+        - Additional diagnostic tests
+        - Example data/use case
+        - Error handling
+        - Multiple improvements
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current State
+      description: What does the notebook currently do (or not do)?
+      placeholder: "The synthetic control notebook currently uses a simple linear regression for weights..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed Improvement
+      description: What specifically should be changed or added?
+      placeholder: |
+        Add penalized synthetic control (elastic net) to handle cases with many potential donors.
+        
+        This would:
+        - Improve weight selection when donor pool is large
+        - Add regularization parameter tuning via cross-validation
+        - Include comparison plots showing standard vs. penalized SC
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Why is this improvement valuable?
+      placeholder: "Penalized SC is more robust when the donor pool exceeds ~20 units..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Technical References
+      description: Papers, packages, or existing implementations
+      placeholder: |
+        - Abadie & L'Hour (2021) on penalized synthetic control
+        - SparseSC Python package implementation
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      description: How big is this change?
+      options:
+        - Small (< 1 hour, few cells)
+        - Medium (1-4 hours, multiple cells/sections)
+        - Large (> 4 hours, major refactor)
+        - Unsure
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I can implement this improvement myself
+        - label: I can test the implementation
+        - label: I can review the methodology
+        - label: I'm just suggesting the idea
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I have reviewed the existing notebook thoroughly
+          required: true
+        - label: I have searched existing issues to avoid duplicates
+          required: true
