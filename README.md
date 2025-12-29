@@ -1,4 +1,4 @@
-# KASS – Knowledge & Analytics for Social Science
+# KASS – KHIPU Analytics for Social Science
 
 **Open-source notebooks demonstrating production-grade causal inference and policy analysis**
 
@@ -208,7 +208,7 @@ If you use these notebooks in your research or operational work:
 ```bibtex
 @software{kass2025,
   author = {Brandon Deloatch},
-  title = {KASS: Knowledge \& Analytics for Social Science},
+  title = {KASS: KHIPU Analytics for Social Science},
   year = {2025},
   publisher = {GitHub},
   url = {https://github.com/bcdelodx/KASS}
