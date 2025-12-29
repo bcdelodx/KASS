@@ -1,0 +1,104 @@
+name: Discussion Management
+
+on:
+  discussion:
+    types: [created, answered, labeled]
+  discussion_comment:
+    types: [created]
+
+jobs:
+  welcome-first-time-contributor:
+    runs-on: ubuntu-latest
+    if: github.event.discussion.author_association == 'NONE'
+    steps:
+      - name: Welcome first-time discussion participant
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const discussionNumber = context.payload.discussion.number;
+            const author = context.payload.discussion.user.login;
+
+            // Check if this is user's first discussion
+            const { data: discussions } = await github.rest.search.issuesAndPullRequests({
+              q: `repo:${context.repo.owner}/${context.repo.repo} author:${author} is:open`
+            });
+
+            if (discussions.total_count === 1) {
+              const welcomeComment = `
+👋 Welcome to KASS Discussions, @${author}!
+
+Thank you for joining our community. A few quick pointers:
+
+- 📚 Check out the [pinned discussions](../discussions) for common questions and guidelines
+- 🤝 Be sure to review our [Contributing Guide](../CONTRIBUTING.md) if you're thinking about contributing code
+- 🔔 You can watch this repository to get notified of new discussions and responses
+
+We'll respond to your question soon. In the meantime, feel free to explore other discussions!
+              `;
+
+              await github.rest.discussions.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                discussion_number: discussionNumber,
+                body: welcomeComment
+              });
+            }
+
+  label-by-category:
+    runs-on: ubuntu-latest
+    if: github.event.action == 'created'
+    steps:
+      - name: Auto-label discussions by category
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const category = context.payload.discussion.category.name;
+            const discussionNumber = context.payload.discussion.number;
+
+            const categoryLabels = {
+              'Methodological Questions': 'methodology',
+              'Implementation Help': 'help-wanted',
+              'Show & Tell': 'showcase',
+              'Feature Requests & Ideas': 'enhancement',
+              'Research & Policy Applications': 'policy-research',
+              'Announcements': 'announcement',
+              'General Discussion': 'discussion'
+            };
+
+            const label = categoryLabels[category];
+            if (label) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: discussionNumber,
+                labels: [label]
+              });
+            }
+
+  mark-answered:
+    runs-on: ubuntu-latest
+    if: github.event.action == 'answered'
+    steps:
+      - name: Thank user for marking answer
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const discussionNumber = context.payload.discussion.number;
+
+            const thankYouComment = `
+✅ **Question Answered**
+
+Thank you for marking an answer! This helps the community find solutions more easily.
+
+If you found this discussion helpful, consider:
+- ⭐ Starring the repository
+- 🔁 Sharing with colleagues who might benefit
+- 🎯 Posting your own work in [Show & Tell](../discussions/categories/show-tell)
+            `;
+
+            await github.rest.discussions.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              discussion_number: discussionNumber,
+              body: thankYouComment
+            });

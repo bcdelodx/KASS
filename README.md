@@ -96,8 +96,23 @@ Fork the repository, adapt the relevant notebook to your data and question, modi
 **If you're evaluating the KRL platform:**  
 These notebooks demonstrate core analytical capabilities. The platform adds data connectivity, automated pipelines, collaboration features, and production-grade infrastructure around these methods.
 
-**If you're contributing improvements:**  
+**If you're contributing improvements:**
 See [Contributing](#contributing) below. We're particularly interested in extensions that address new policy domains, alternative identification strategies, or methodological improvements.
+
+---
+
+## Community & Discussions
+
+Join the KASS community on [GitHub Discussions](../../discussions):
+
+- **📚 [Methodological Questions](../../discussions/categories/methodological-questions)** – Get help with causal inference methods and identification strategies
+- **💻 [Implementation Help](../../discussions/categories/implementation-help)** – Technical support for running notebooks and resolving code issues
+- **🔬 [Show & Tell](../../discussions/categories/show-tell)** – Share analyses you've built using KASS methods
+- **💡 [Feature Requests](../../discussions/categories/feature-requests-ideas)** – Suggest new notebooks, methods, or improvements
+- **📖 [Policy Applications](../../discussions/categories/research-policy-applications)** – Discuss applying causal inference to specific policy domains
+- **🗺️ [Roadmap](../../discussions)** – See what's coming and how to contribute
+
+**Before posting:** Check the [FAQ](../../discussions) and review our [discussion templates](.github/discussions/discussion_templates.md) for guidance on asking effective questions.
 
 ---
 
