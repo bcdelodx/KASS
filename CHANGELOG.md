@@ -8,9 +8,10 @@ All notebooks with Pro or Enterprise tier features now implement graceful degrad
 
 When a notebook tries to import a tier-restricted feature:
 - **Displays clear upgrade banner** with feature description
-- **Shows current vs. required tier** information (COMMUNITY → PRO → ENTERPRISE)
+- **Shows current vs. required tier** information (COMMUNITY → PROFESSIONAL → ENTERPRISE)
 - **Direct Stripe Payment Links** for instant checkout:
-  - PRO Monthly: `https://buy.stripe.com/krl_pro_monthly` ($49/mo)
+  - PROFESSIONAL Monthly: `https://buy.stripe.com/krl_pro_monthly` ($149/mo)
+  - PROFESSIONAL Annual: `https://buy.stripe.com/krl_pro_annual` ($1,428/yr)
   - 1-Hour Pass: `https://buy.stripe.com/krl_1hr_pass` ($5)
   - 24-Hour Pass: `https://buy.stripe.com/krl_24hr_pass` ($15)
   - 7-Day Trial: `https://buy.stripe.com/krl_7day_trial` ($99)
