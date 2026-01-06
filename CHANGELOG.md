@@ -2,25 +2,29 @@
 
 ## 2026-01-06 - Graceful Degradation for Tiered Features
 
-All notebooks with Professional or Enterprise tier features now implement graceful degradation instead of hard errors for users without the required tier.
+All notebooks with Pro or Enterprise tier features now implement graceful degradation instead of hard errors for users without the required tier.
 
-### Feature: Subscription/Rental Upsell Messaging
+### Feature: Stripe Payment Link Integration
 
 When a notebook tries to import a tier-restricted feature:
 - **Displays clear upgrade banner** with feature description
-- **Shows current vs. required tier** information
-- **Offers upgrade paths**:
-  - Subscription option ($99/mo Enterprise, $49/mo Professional)
-  - Rental option ($29/analysis for Enterprise, $19/session for Professional)
-- **Falls back gracefully** where possible (e.g., community connectors)
+- **Shows current vs. required tier** information (COMMUNITY → PRO → ENTERPRISE)
+- **Direct Stripe Payment Links** for instant checkout:
+  - PRO Monthly: `https://buy.stripe.com/krl_pro_monthly` ($49/mo)
+  - 1-Hour Pass: `https://buy.stripe.com/krl_1hr_pass` ($5)
+  - 24-Hour Pass: `https://buy.stripe.com/krl_24hr_pass` ($15)
+  - 7-Day Trial: `https://buy.stripe.com/krl_7day_trial` ($99)
+- **Falls back gracefully** where possible (e.g., FREDBasicConnector for community)
+
+> **Note**: Replace placeholder URLs with actual Stripe Payment Links from your dashboard.
 
 ### Notebooks Updated
 
 | Notebook | Tier Features | Graceful Handling |
 |----------|---------------|-------------------|
-| NB11 (Heterogeneous Treatment Effects) | `krl_policy.TreatmentEffectEstimator` | ✓ Enterprise fallback |
+| NB11 (Heterogeneous Treatment Effects) | `krl_policy` | ✓ Enterprise fallback |
 | NB14 (Synthetic Control) | `krl_policy.SyntheticControlMethod` | ✓ Enterprise fallback |
-| NB15 (RDD Toolkit) | `FREDFullConnector` | ✓ Professional fallback (→ FREDBasicConnector) |
+| NB15 (RDD Toolkit) | `FREDFullConnector` | ✓ Pro fallback (→ FREDBasicConnector) |
 | NB20 (Opportunity Zones) | `krl_policy.TreatmentEffectEstimator` | ✓ Enterprise fallback |
 | NB22 (Workforce ROI) | `krl_policy.TreatmentEffectEstimator` | ✓ Enterprise fallback |
 
