@@ -119,6 +119,56 @@ If you find these notebooks useful but need to run hundreds of analyses rather t
 
 ---
 
+## The KRL Connection
+
+These notebooks are open-source demonstrations of analytical methods that KRL (Khipu Research Labs) implements at scale. The platform handles:
+
+- **Data connectivity**: 68+ authoritative data sources (Census, BLS, CMS, state administrative data) with automated ETL
+- **Model library**: 125+ causal inference models with proper documentation and validation
+- **Collaborative infrastructure**: Team workspaces, audit trails, access controls suitable for government and research use
+- **Reproducibility architecture**: Containerized environments, dependency management, computational reproducibility by default
+
+If you find these notebooks useful but need to run hundreds of analyses rather than one, need institutional-grade infrastructure, or want to eliminate data acquisition overhead, that's what the platform provides.
+
+---
+
+## Platform Access & Pricing
+
+**Start with what you've already seen working.**
+
+You've explored the notebooks. You understand the methodology. You know these approaches produce defensible results.
+
+The KRL platform removes the infrastructure overhead—data acquisition, environment management, computational scaling, collaboration tools—so your team focuses on the analysis that matters.
+
+### Choose Your Access Level
+
+| Tier | Monthly Cost | API Calls | Best For |
+|------|--------------|-----------|----------|
+| **Community** | **Free** | 10,000 | Learning, teaching, exploratory analysis. Full model zoo access. |
+| **Professional** | **$149** | 100,000 | Individual researchers and small teams running regular policy analysis. Priority support, private workspaces. |
+| **Team** | **$499** + per seat | Custom | Research shops, consultancies, policy units. Collaborative workflows, shared data sources, access controls, audit logs. |
+| **Enterprise** | **Custom** | Unlimited | Government agencies, large institutions. Dedicated infrastructure, compliance certifications (SOC 2, FedRAMP in progress), SLAs, custom connectors. |
+
+### What You Get Beyond the Notebooks
+
+- **Zero data acquisition overhead**: Direct connectors to 68+ authoritative sources. No more API key juggling or download scripts.
+- **Validated model implementations**: 125+ causal inference estimators with proper documentation, unit tests, and validation against published results.
+- **Reproducibility by default**: Every analysis runs in isolated environments with locked dependencies. Nothing breaks six months later.
+- **Collaboration infrastructure**: Share workflows, review specifications, maintain audit trails. Built for teams, not solo practitioners.
+- **Computational scaling**: Run sensitivity analyses across thousands of specifications without thinking about infrastructure.
+
+**Current Status**: Beta. SOC 2 Type II certification expected Q2 2026. We're working with early partners to refine workflows and validate production readiness.
+
+---
+
+### [**View Interactive Pricing & Subscribe →**](https://bcdelodx.github.io/KASS/pricing.html)
+
+Questions about fit? [Schedule a technical walkthrough](https://krlabs.dev/demo) or [explore the documentation](https://docs.krlabs.dev).
+
+[Learn more about KRL](https://krlabs.dev) | [Request beta access](https://krlabs.dev/beta)
+
+---
+
 ## Contributing
 
 We welcome contributions that improve analytical quality, extend methodological coverage, or demonstrate new applications:
