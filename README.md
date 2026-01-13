@@ -161,11 +161,9 @@ The KRL platform removes the infrastructure overhead—data acquisition, environ
 
 ---
 
-### [**View Interactive Pricing & Subscribe →**](https://bcdelodx.github.io/KASS/pricing.html)
+### [**View Interactive Pricing & Subscribe →**](https://khipuresearch.github.io/KASS/pricing.html)
 
-Questions about fit? [Schedule a technical walkthrough](https://krlabs.dev/demo) or [explore the documentation](https://docs.krlabs.dev).
-
-[Learn more about KRL](https://krlabs.dev) | [Request beta access](https://krlabs.dev/beta)
+Questions about fit? [Schedule a technical walkthrough](https://krlabs.dev/contact) 
 
 ---
 
